@@ -5,7 +5,9 @@ show how Java EE 6 annotations can save developers some boiler plate XML code.
 
 # Instructions
 
-__some description about what the demo will do is needed__
+The servlet will reply as simple as possible to client requests. It will just write some
+plain text in the response, that's all. You can change the text to check how this demo
+works.
 
 ## Dependencies
 
@@ -54,7 +56,7 @@ annotations. The `@WebServlet` annotation do all the work for us. As easy as a p
 
 	@WebServlet(urlPatterns = {"/SimpleHttpServlet"})
 
-The `urlPatterns` attribute of the annotation allows us to configure the URL where the 
+The `urlPatterns` annotation attribute allows us to configure the URL where the 
 servlet will reply to client requests.
 
 # Run
