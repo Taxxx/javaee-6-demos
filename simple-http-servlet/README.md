@@ -1,6 +1,6 @@
-# Simple Http Servlet
+# Simple HTTP Servlet
 
-In this example, we will create a simple http servlet, without a web descriptor, just to
+In this example, we will create a simple HTTP servlet, without a web descriptor, just to
 show how Java EE 6 annotations can save developers some boiler plate XML code.
 
 # Instructions
@@ -51,7 +51,7 @@ words in plain text.
 
 ## Configuring the servlet
 
-Java EE 6 allows us to configure the servlet withou using a web descriptor, just by using
+Java EE 6 allows us to configure the servlet without using a web descriptor, just by using
 annotations. The `@WebServlet` annotation do all the work for us. As easy as a pie:
 
 	@WebServlet(urlPatterns = {"/SimpleHttpServlet"})
