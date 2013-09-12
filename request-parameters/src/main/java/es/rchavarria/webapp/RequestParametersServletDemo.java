@@ -24,24 +24,37 @@ public class RequestParametersServletDemo extends HttpServlet {
 
         PrintWriter out = response.getWriter();
         try{
-        	String yes = names.hasMoreElements() ? "will" : "won't";
-            out.println("<h2>");
-            out.println("This servlet " + yes + " read your form parameters");
-            out.println("</h2>");
-            
-            out.println("<ul>");
-            while(names.hasMoreElements()) {
-            	String name = names.nextElement();
-            	String value = request.getParameter(name);
-            	
-            	out.println("<li>");
-                out.println(name + ": " + value);
-                out.println("</li>");
-            }
-            out.println("</ul>");
-            
+        	out.println(outputHeading(names.hasMoreElements()));
+            out.println(outputParametersList(request, names));
         } finally {
             out.close();
         }
     }
+
+	private String outputHeading(boolean thereAreParameters) {
+    	String yes = thereAreParameters ? "will" : "won't";
+    	return  "<h2>" + 
+    			"This servlet " + yes + " read your form parameters" +
+    			"</h2>";
+	}
+
+	private String outputParametersList(HttpServletRequest request, Enumeration<String> names) {
+		if(!names.hasMoreElements()) return "";
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("<ul>");
+        while(names.hasMoreElements()) {
+        	String name = names.nextElement();
+        	String value = request.getParameter(name);
+        	
+        	sb.append("<li>");
+            sb.append(name + ": " + value);
+            sb.append("</li>");
+        }
+        sb.append("</ul>");
+		
+		return sb.toString();
+	}
+	
 }
