@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
-@WebServlet(urlPatterns = {"/SimpleHttpServlet"}) 
-public class HttpServletDemo extends HttpServlet {
+@WebServlet(urlPatterns = {"/RequestParametersServlet"}) 
+public class RequestParametersServletDemo extends HttpServlet {
  
-    @Override
+	private static final long serialVersionUID = 5407847482550527510L;
+
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -19,8 +21,7 @@ public class HttpServletDemo extends HttpServlet {
         PrintWriter out = response.getWriter();
         try{
             out.println("<h2>");
-            out.println("This servlet has been configured simply by: ");
-            out.println("@WebServlet(urlPatterns = {\"/SimpleHttpServlet\"})");
+            out.println("This servlet will read your form parameters");
             out.println("</h2>");
         } finally {
             out.close();
