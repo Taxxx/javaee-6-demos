@@ -1,7 +1,8 @@
 # Request Parameters Servlet
 
 In this example, we will create a HTTP servlet able to read request parameters.
-The servlet will be based in our previous simple HTTP servlet.
+The servlet will be based in our previous 
+[simple HTTP servlet](../simple-http-servlet).
 
 # Instructions
 
@@ -23,8 +24,8 @@ so it will inherit from `javax.servlet.http.HttpServlet`. We will configure it
 using the annotation `@WebServlet` as in our previous demo. 
 
 We will read request parameters using two methods in `HttpServletRequest` interface:
-`getParameterNames()` and `getParameter(String name)`. The code that reads the 
-request parameters and generates HTML code to show them is:
+`Enumeration<String> getParameterNames()` and `String getParameter(String name)`. 
+The code that reads the request parameters and generates HTML code to show them is:
 
 	private String outputParametersList(HttpServletRequest request) {
         Enumeration<String> names = request.getParameterNames();
