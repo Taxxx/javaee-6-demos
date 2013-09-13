@@ -25,7 +25,7 @@ public class RequestParametersServletDemo extends HttpServlet {
         PrintWriter out = response.getWriter();
         try{
         	out.println(outputHeading(names.hasMoreElements()));
-            out.println(outputParametersList(request, names));
+            out.println(outputParametersList(request));
         } finally {
             out.close();
         }
@@ -38,7 +38,8 @@ public class RequestParametersServletDemo extends HttpServlet {
     			"</h2>";
 	}
 
-	private String outputParametersList(HttpServletRequest request, Enumeration<String> names) {
+	private String outputParametersList(HttpServletRequest request) {
+        Enumeration<String> names = request.getParameterNames();
 		if(!names.hasMoreElements()) return "";
 		
 		StringBuilder sb = new StringBuilder();
