@@ -42,7 +42,6 @@ public class RequestParametersServletDemo extends HttpServlet {
         	p.setKey(name);
         	p.setValue(value);
         	result.add(p);
-        	System.out.println("name: " + p.getKey() + ", value: " + p.getValue());
         }
 		
 		return result;

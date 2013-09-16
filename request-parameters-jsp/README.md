@@ -9,15 +9,14 @@ that will render that data in an HTML and pretty format.
 
 # **TO BE COMPLETED**
 
-We aren't using any JSP page to display the result to the user, so, the servlet
-will write simple plain text to show that it is working, that's all.
+The servlet will read request parameters and will build a list of objects with
+the data that just has been read. Then, data will be stored in a request
+attribute and the request will be forwared to a JSP page.
 
-Our servlet will read the parameters in the HTTP request and it will display
-their names and their values.
+The JSP page will read the attribute, and will format the data in an HTML and
+pretty format.
 
 ## Dependencies
-
-# **TO BE COMPLETED**
 
 In this case, we have the same dependencies as in our previous demo: Java EE and
 Jetty maven plugin.
@@ -26,33 +25,31 @@ Jetty maven plugin.
 
 # **TO BE COMPLETED**
 
-The servlet will be based in our previous servlet, so it will be an HTTP servlet,
-so it will inherit from `javax.servlet.http.HttpServlet`. We will configure it
-using the annotation `@WebServlet` as in our previous demo. 
+The servlet will build a list of objects. Each object will store information about
+the name and value of a request parameter. The code will look similar to this, 
+please, look into the source code to see the final version that really works:
 
-We will read request parameters using two methods in `HttpServletRequest` interface:
-`Enumeration<String> getParameterNames()` and `String getParameter(String name)`. 
-The code that reads the request parameters and generates HTML code to show them is:
-
-    private String outputParametersList(HttpServletRequest request) {
+    private List<Parameter> buildParamList(HttpServletRequest request) {
         Enumeration<String> names = request.getParameterNames();
-        if(!names.hasMoreElements()) return "";
-        
-        StringBuilder sb = new StringBuilder();
-        
-        sb.append("<ul>");
+        List<Parameter> result = new LinkedList<Parameter>();
         while(names.hasMoreElements()) {
-            String name = names.nextElement();
-            String value = request.getParameter(name);
-            
-            sb.append("<li>");
-            sb.append(name + ": " + value);
-            sb.append("</li>");
+            result.add(new Parameter(key, value));
         }
-        sb.append("</ul>");
         
-        return sb.toString();
+        return result;
     }
+
+Then, the servlet just forward the request to a JSP page, to render the data in
+an HTML page.
+
+    // [...]
+    List<Parameter> params = buildParamList(request);
+    request.setAttribute("params", params);
+    request.setAttribute("check", "true");
+    
+    // forward to the JSP page
+    request.getRequestDispatcher("/params.jsp").forward(request, response);
+    // [...]
 
 # Run
 
