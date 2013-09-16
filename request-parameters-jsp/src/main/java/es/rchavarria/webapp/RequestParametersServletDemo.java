@@ -2,7 +2,10 @@ package es.rchavarria.webapp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.Enumeration;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,44 +21,31 @@ public class RequestParametersServletDemo extends HttpServlet {
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
-        Enumeration<String> names = request.getParameterNames();
-
-        PrintWriter out = response.getWriter();
-        try{
-        	out.println(outputHeading(names.hasMoreElements()));
-            out.println(outputParametersList(request));
-        } finally {
-            out.close();
-        }
+		List<Parameter> params = buildParamList(request);
+		request.setAttribute("params", params);
+		request.setAttribute("check", "true");
+		
+		// forward to the JSP page
+		request.getRequestDispatcher("/params.jsp").forward(request, response);
     }
 
-	private String outputHeading(boolean thereAreParameters) {
-    	String yes = thereAreParameters ? "will" : "won't";
-    	return  "<h2>" + 
-    			"This servlet " + yes + " read your form parameters" +
-    			"</h2>";
-	}
-
-	private String outputParametersList(HttpServletRequest request) {
+	private List<Parameter> buildParamList(HttpServletRequest request) {
         Enumeration<String> names = request.getParameterNames();
-		if(!names.hasMoreElements()) return "";
-		
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append("<ul>");
+		if(!names.hasMoreElements()) return Collections.emptyList();
+
+		List<Parameter> result = new LinkedList<Parameter>();
         while(names.hasMoreElements()) {
         	String name = names.nextElement();
         	String value = request.getParameter(name);
         	
-        	sb.append("<li>");
-            sb.append(name + ": " + value);
-            sb.append("</li>");
+        	Parameter p = new Parameter();
+        	p.setKey(name);
+        	p.setValue(value);
+        	result.add(p);
+        	System.out.println("name: " + p.getKey() + ", value: " + p.getValue());
         }
-        sb.append("</ul>");
 		
-		return sb.toString();
+		return result;
 	}
-	
+
 }
