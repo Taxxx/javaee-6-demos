@@ -23,7 +23,6 @@ public class RequestParametersServletDemo extends HttpServlet {
             throws ServletException, IOException {
 		List<Parameter> params = buildParamList(request);
 		request.setAttribute("params", params);
-		request.setAttribute("check", "true");
 		
 		// forward to the JSP page
 		request.getRequestDispatcher("/params.jsp").forward(request, response);
