@@ -95,7 +95,53 @@ Our servlet configuration is set in the web application descriptor file,
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
-5. configure the cxf servlet -> services.xml (default cxf-servlet.xml)
+## Configure the cxf servlet 
+
+CXF servlet will be started, but it doesn't now wich web services has to invoke.
+We need to configure the servlet through an XML file, using CXF namespace
+provided to configure them.
+
+We can use a default file name, and place the configuration in `WEB-INF/cxf-servlet`,
+or we can configure manually our servlet to tell him where is stored its configuration
+file.
+
+We modify our existing `web.xml` file:
+
+    <servlet>
+        <servlet-name>the-cxf-servlet</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+
+		<init-param>
+			<param-name>config-location</param-name>
+			<param-value>/WEB-INF/services.xml</param-value>   
+		</init-param>        
+
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+And we add the CXF servlet configuration file `WEB-INF/services.xml`: 
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+	      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	      xmlns:jaxws="http://cxf.apache.org/jaxws"
+	      xmlns:soap="http://cxf.apache.org/bindings/soap"
+	      xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd
+	http://cxf.apache.org/jaxws
+	http://cxf.apache.org/schemas/jaxws.xsd">
+
+	  <jaxws:server id="aServer" serviceClass="es.rchavarria.ws.UsersManagement" address="/Users">
+	  	<jaxws:serviceBean>
+	  		<bean class="es.rchavarria.ws.UsersManagementImpl" />
+	  	</jaxws:serviceBean>
+	  </jaxws:server>
+	</beans>
+
+Note that this is a Spring configuration file. A new namespace is added, `jaxws`, which provide 
+XML tags to configure the servlet.
+
 6. run jetty, a web container, that runs the servlet. Visit 
 (http://localhost:8080/HelloWorld?wsdl) to see the WSDL file defining the web service
 
