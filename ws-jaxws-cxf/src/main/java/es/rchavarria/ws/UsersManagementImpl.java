@@ -7,11 +7,11 @@ import javax.jws.WebService;
 public class UsersManagementImpl implements UsersManagement {
 
 	public String getUser(int userId) {
-		return null;
+		return "foo bar user";
 	}
 
 	public int addUser(String name) {
-		return 0;
+		return 42;
 	}
  
 }
