@@ -50,7 +50,25 @@ Our interface will look something like this:
 		public int addUser(@WebParam(name="name") String name);
 	}
 
-3. write service implementation
+## Write service implementation
+
+Now it's the time to implement our service. The implementation needs to be
+annotated with `@WebService` as well, and we should provide some parameters
+to that annotation. The most important one is `endpointInterface` that must
+point to our service interface.
+
+The web service implementation should look like this:
+
+	import javax.jws.WebService;
+
+	@WebService(endpointInterface = "es.rchavarria.ws.UsersManagement",
+	            serviceName = "Users")
+	public class UsersManagementImpl implements UsersManagement {
+		 // ... methods implementation
+	}
+
+Look into the code to see how methods are implemented.
+
 4. set up a servlet that manages http request (cxf servlet) -> web.xml
 5. configure the cxf servlet -> services.xml (default cxf-servlet.xml)
 6. run jetty, a web container, that runs the servlet. Visit 
