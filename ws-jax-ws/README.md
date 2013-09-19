@@ -19,7 +19,16 @@ We will chose [Apache CXF](http://cxf.apache.org) as our implementation, but
 there are others, like [Spring WS](http://projects.spring.io/spring-ws/)
 (we may try that one some day).
 
-1. setting up pom.xml dependencies
+## Setting up project dependencies
+
+The demo will depend on:
+
+- `javax.servlet-api`: The Java EE API for servlets, because it will be a servlet
+who will manage HTTP requests. The web service will rely on this servlet.
+- `cxf-rt-frontend-jaxws`: The implementation of JAX-WS of CXF.
+- `cxf-rt-transports-http`: The protocol used for communications.
+- `spring-web`: CXF uses Spring internally.
+
 2. write service interface @WebService
 3. write service implementation
 4. set up a servlet that manages http request (cxf servlet) -> web.xml
