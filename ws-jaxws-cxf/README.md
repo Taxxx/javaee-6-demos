@@ -142,13 +142,12 @@ And we add the CXF servlet configuration file `WEB-INF/services.xml`:
 Note that this is a Spring configuration file. A new namespace is added, `jaxws`, which provide 
 XML tags to configure the servlet.
 
-6. run jetty, a web container, that runs the servlet. Visit 
-(http://localhost:8080/HelloWorld?wsdl) to see the WSDL file defining the web service
-
 # Run
 
 To run this example, just type `mvn jetty:run`, or even simpler, `mvn` (the default
 maven goal is configured as `jetty:run` for your convenience).
+
+Visit (http://localhost:8080/Users?wsdl) to see the WSDL file defining the web service.
 
 # Further reading
 

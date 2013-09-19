@@ -9,9 +9,9 @@ http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/
 http://cxf.apache.org/jaxws
 http://cxf.apache.org/schemas/jaxws.xsd">
 
-  <jaxws:server id="aServer" serviceClass="es.rchavarria.ws.HelloWorld" address="/HelloWorld">
+  <jaxws:server id="aServer" serviceClass="es.rchavarria.ws.UsersManagement" address="/Users">
   	<jaxws:serviceBean>
-  		<bean class="es.rchavarria.ws.HelloWorldImpl" />
+  		<bean class="es.rchavarria.ws.UsersManagementImpl" />
   	</jaxws:serviceBean>
   </jaxws:server>
 </beans>
