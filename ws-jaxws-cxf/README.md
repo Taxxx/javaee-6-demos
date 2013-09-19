@@ -144,7 +144,8 @@ XML tags to configure the servlet.
 
 ## Ready
 
-This demo is ready to run. Run it and visit (http://localhost:8080/Users?wsdl) to 
+This demo is ready to run. Run it and visit 
+[http://localhost:8080/Users?wsdl](http://localhost:8080/Users?wsdl) to 
 see the WSDL file defining the web service.
 
 In the next demo, we will create a client for our web service and we will check 
