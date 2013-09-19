@@ -69,7 +69,32 @@ The web service implementation should look like this:
 
 Look into the code to see how methods are implemented.
 
-4. set up a servlet that manages http request (cxf servlet) -> web.xml
+# Set up a servlet that manages http request
+
+Next step is to configure a servlet to manage HTTP requests. Apache CXF
+provides this servlet, so, we have to configure our server to start it.
+The servlet will manage all requests, because we set the URL pattern to
+be like `/*`. 
+
+It is essential to note that CXF servlet URL pattern must be able to handle
+the URL to access the web service. That is, if the URL pattern is 
+`/services/*` and web service URL is `/web-services/Users`, the servlet won't
+be able to manage that HTTP requests.
+
+Our servlet configuration is set in the web application descriptor file,
+`web.xml`:
+
+    <servlet>
+        <servlet-name>the-cxf-servlet</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>the-cxf-servlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
 5. configure the cxf servlet -> services.xml (default cxf-servlet.xml)
 6. run jetty, a web container, that runs the servlet. Visit 
 (http://localhost:8080/HelloWorld?wsdl) to see the WSDL file defining the web service
