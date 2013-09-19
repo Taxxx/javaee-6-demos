@@ -8,7 +8,17 @@ protocols are also valid for web services.
 
 # Instructions
 
-0. chose a JAX-WS implementation framework: apache cxf (uses spring)
+## Chose a JAX-WS implementation framework
+
+Creating a web service could seem pretty straight forward, according to 
+[Oracle documentation](http://docs.oracle.com/javaee/6/tutorial/doc/bnayl.html)
+about the subject. But, there is a pitfall. *Implementation*.
+Java EE 6 specification _specifies_, but it doesn't provide an implementation.
+
+We will chose [Apache CXF](http://cxf.apache.org) as our implementation, but
+there are others, like [Spring WS](http://projects.spring.io/spring-ws/)
+(we may try that one some day).
+
 1. setting up pom.xml dependencies
 2. write service interface @WebService
 3. write service implementation
