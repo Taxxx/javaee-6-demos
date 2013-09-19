@@ -23,13 +23,33 @@ there are others, like [Spring WS](http://projects.spring.io/spring-ws/)
 
 The demo will depend on:
 
-- `javax.servlet-api`: The Java EE API for servlets, because it will be a servlet
+- `javax.servlet-api`: the Java EE API for servlets, because it will be a servlet
 who will manage HTTP requests. The web service will rely on this servlet.
-- `cxf-rt-frontend-jaxws`: The implementation of JAX-WS of CXF.
-- `cxf-rt-transports-http`: The protocol used for communications.
+- `cxf-rt-frontend-jaxws`: the implementation of JAX-WS of CXF.
+- `cxf-rt-transports-http`: the protocol used for communications.
 - `spring-web`: CXF uses Spring internally.
 
-2. write service interface @WebService
+## Write the service interface
+
+Our web service will be used to store the names of our users, and retrieve that
+name based on an `id` return by the web service itselt.
+
+We will need two methods: 
+
+- `addUser`: to add a user to our system.
+- `getUser`: to retrieve a user name.
+
+Our interface will look something like this:
+
+	import javax.jws.WebService;
+	import javax.jws.WebParam;
+
+	@WebService
+	public interface UsersManagement {
+		public String getUser(@WebParam(name="userId") int userId);
+		public int addUser(@WebParam(name="name") String name);
+	}
+
 3. write service implementation
 4. set up a servlet that manages http request (cxf servlet) -> web.xml
 5. configure the cxf servlet -> services.xml (default cxf-servlet.xml)
