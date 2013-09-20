@@ -97,7 +97,7 @@ Our servlet configuration is set in the web application descriptor file,
 
 ## Configure the cxf servlet 
 
-CXF servlet will be started, but it doesn't now wich web services has to invoke.
+CXF servlet will be started, but it doesn't know wich web services has to invoke.
 We need to configure the servlet through an XML file, using CXF namespace
 provided to configure them.
 

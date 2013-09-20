@@ -11,7 +11,7 @@
 	<title>Rendering request params from a JSP file</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="padding-left: 40px">
 
