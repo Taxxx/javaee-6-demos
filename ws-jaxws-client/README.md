@@ -103,7 +103,11 @@ web service: `addUser` and `getUser`. Time to test them!!
 # Run
 
 This demo run as a JUnit test, so one can see the results by running the maven
-command `mvn test`.
+command `mvn test`. 
+
+I added the maven surefire report plugin as well, so, running the command `mvn site`,
+maven will generate a report with the results of all executed tests. Run the command
+and opent the HTML file in `target/site/index.html`.
 
 # Further reading
 
