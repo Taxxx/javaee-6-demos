@@ -12,6 +12,8 @@ public class UsersManagementImpl implements UsersManagement {
 	private List<String> users = new LinkedList<String>();
 	
 	public String getUser(int userId) {
+		userId--; // index starts at 0
+		
 		if(userId >= users.size()) 
 			throw new RuntimeException("User not found. Id requested: " + userId);
 		
