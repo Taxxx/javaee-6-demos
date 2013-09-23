@@ -10,3 +10,7 @@ and development lifecycle (from start to test, run and package as .war files)
 # Demos
 
 - [Simple Http Servlet](simple-http-servlet)
+- [Servlet reads request parameters](request-parameters)
+- [Servlet forwards to a JSP](request-parameters-jsp)
+- [How to create a web service](ws-jaxws-cxf)
+- [Developing a web service client](ws-jaxws-client)
