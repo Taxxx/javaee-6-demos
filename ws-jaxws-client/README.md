@@ -89,6 +89,17 @@ get the _port_ class. This class will allow us to invoke the web service:
 Now, we have the _port_ class, so we are able to invoke methods exposed by our
 web service: `addUser` and `getUser`. Time to test them!!
 
+    @Test
+    public void test() {
+        assertEquals(1, port.addUser("The boss"));
+        assertEquals(2, port.addUser("The king"));
+        assertEquals(3, port.addUser("The queen"));
+        
+        assertEquals("The boss", port.getUser(1));
+        assertEquals("The queen", port.getUser(3));
+        assertEquals("The king", port.getUser(2));
+    }
+
 # Run
 
 This demo run as a JUnit test, so one can see the results by running the maven
