@@ -43,4 +43,15 @@ public class UsersManagementImplTest {
 		sut.addUser("first");
 		assertEquals("first", sut.getUser(1));
 	}
+	
+	@Test
+	public void testGetSeveralUsers() {
+		sut.addUser("first");
+		sut.addUser("second");
+		sut.addUser("third");
+		
+		assertEquals("second", sut.getUser(2));
+		assertEquals("third", sut.getUser(3));
+		assertEquals("first", sut.getUser(1));
+	}
 }
