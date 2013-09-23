@@ -1,6 +1,6 @@
 package es.rchavarria.ws.client;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,13 @@ public class JaxWsClientTest {
 	
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		assertEquals(1, port.addUser("The boss"));
+		assertEquals(2, port.addUser("The king"));
+		assertEquals(3, port.addUser("The queen"));
+		
+		assertEquals("The boss", port.getUser(1));
+		assertEquals("The queen", port.getUser(3));
+		assertEquals("The king", port.getUser(2));
 	}
 
 }

@@ -70,9 +70,24 @@ We will create the test in the `es.rchavarria.ws.client` package. In the `setUp`
 method of our test, we will create an instance of the service, and the we
 get the _port_ class. This class will allow us to invoke the web service:
 
+    //...
+    public class JaxWsClientTest {
 
+        private UsersManagement port;
 
-4. invoke the web service
+        @Before
+        public void setUp() {
+            UsersManagementService service = new UsersManagementService();
+            port = service.getUsersManagementPort();
+        }
+    
+    //...        
+    }
+
+## Invoke the web service
+
+Now, we have the _port_ class, so we are able to invoke methods exposed by our
+web service: `addUser` and `getUser`. Time to test them!!
 
 # Run
 
