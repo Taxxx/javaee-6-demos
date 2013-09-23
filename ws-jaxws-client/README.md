@@ -15,8 +15,8 @@ own web service, start it as you usually do.
 
 Start the web service:
 
-	cd ws-jaxws-cxf
-	mvn jetty:run
+    cd ws-jaxws-cxf
+    mvn jetty:run
 
 Now, we have the WSDL file available at `http://localhost:8080/Users?wsdl`
 
@@ -27,11 +27,11 @@ a web service.
 
 The basic use of the command would be:
 
-	wsimport [options] <WSDL_URI>
+    wsimport [options] <WSDL_URI>
 
 In our case:
-	
-	wsimport http://localhost:8080/Users?wsdl
+    
+    wsimport http://localhost:8080/Users?wsdl
 
 This will generate classes, compile them and delete the source code, leaving
 `.class` files only. We will use the following parameters to get a desired 
@@ -44,9 +44,34 @@ generated
 
 The complete command is: 
 
-	wsimport -d src/main/java -keep -Xnocompile http://localhost:8080/Users?wsdl
+    wsimport -d src/main/java -keep -Xnocompile http://localhost:8080/Users?wsdl
 
-3. create a junit test
+The main generated classes are: 
+
+- `UsersManagementService`: a class representing the web service.
+- `UsersManagement`: a class with the same methods of the web service, acting 
+like a proxy to our web service. This is the `port` class, and it allow us to
+invoke the methods exposed by the web service.
+
+## Create a JUnit test to invoke the web service 
+
+We will use a simple JUnit test to invoke our web service. 
+
+First of all, we need to add the JUnit dependency to our maven project:
+
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.8.1</version>
+        <scope>test</scope>
+    </dependency>
+
+We will create the test in the `es.rchavarria.ws.client` package. In the `setUp`
+method of our test, we will create an instance of the service, and the we
+get the _port_ class. This class will allow us to invoke the web service:
+
+
+
 4. invoke the web service
 
 # Run
