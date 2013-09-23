@@ -27,10 +27,11 @@ public class UsersManagementImplTest {
 	}
 	
 	@Test
-	public void testAddUserDoNotDeleteRepeatedUsers() {
+	public void testAddUserDetectsRepeatedUsers() {
 		assertEquals(1, sut.addUser("first"));
 		assertEquals(2, sut.addUser("second"));
-		assertEquals(3, sut.addUser("first"));
+		assertEquals(1, sut.addUser("first"));
+		assertEquals(2, sut.addUser("second"));
 	}
 	
 	@Test(expected=RuntimeException.class)

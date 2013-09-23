@@ -21,9 +21,14 @@ public class UsersManagementImpl implements UsersManagement {
 	}
 
 	public int addUser(String name) {
-		users.add(name);
+		int idx = users.indexOf(name);
 		
-		return users.size();
+		if(idx == -1) {
+			users.add(name);
+			return users.size();
+		} else {
+			return idx + 1;
+		}
 	}
  
 }
