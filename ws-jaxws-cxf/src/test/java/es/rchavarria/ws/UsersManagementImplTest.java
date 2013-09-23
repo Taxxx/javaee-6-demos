@@ -32,5 +32,10 @@ public class UsersManagementImplTest {
 		assertEquals(2, sut.addUser("second"));
 		assertEquals(3, sut.addUser("first"));
 	}
+	
+	@Test(expected=RuntimeException.class)
+	public void testGetUserWithoutUsers() {
+		assertEquals(null, sut.getUser(-1));
+	}
 
 }

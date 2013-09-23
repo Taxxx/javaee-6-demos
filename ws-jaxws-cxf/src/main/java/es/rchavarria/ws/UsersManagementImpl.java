@@ -12,7 +12,10 @@ public class UsersManagementImpl implements UsersManagement {
 	private List<String> users = new LinkedList<String>();
 	
 	public String getUser(int userId) {
-		return "foo bar user";
+		if(userId >= users.size()) 
+			throw new RuntimeException("User not found. Id requested: " + userId);
+		
+		return users.get(userId);
 	}
 
 	public int addUser(String name) {
