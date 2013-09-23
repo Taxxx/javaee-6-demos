@@ -25,5 +25,12 @@ public class UsersManagementImplTest {
 		assertEquals(2, sut.addUser("second"));
 		assertEquals(3, sut.addUser("third"));
 	}
+	
+	@Test
+	public void testAddUserDoNotDeleteRepeatedUsers() {
+		assertEquals(1, sut.addUser("first"));
+		assertEquals(2, sut.addUser("second"));
+		assertEquals(3, sut.addUser("first"));
+	}
 
 }
