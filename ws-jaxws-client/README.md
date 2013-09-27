@@ -107,7 +107,7 @@ command `mvn test`.
 
 I added the maven surefire report plugin as well, so, running the command `mvn site`,
 maven will generate a report with the results of all executed tests. Run the command
-and opent the HTML file in `target/site/index.html`.
+and open the HTML file in `target/site/index.html`.
 
 # Further reading
 
