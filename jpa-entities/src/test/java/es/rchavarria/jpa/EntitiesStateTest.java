@@ -84,6 +84,15 @@ public class EntitiesStateTest {
 		} catch (IllegalStateException e) { }
 	}
 	
+	@Test
+	public void testFromManagedToRemoved() {
+		ContactablePerson p = createContactablePerson();
+		em.persist(p);
+
+		em.remove(p);
+		assertFalse("entity has been removed and it is not managed", em.contains(p));
+	}
+	
 	private ContactablePerson createContactablePerson() {
 		ContactablePerson p = new ContactablePerson();
 		p.setName("Foo bar");

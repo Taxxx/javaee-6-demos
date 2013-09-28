@@ -156,6 +156,15 @@ There are two ways of detaching an entity:
 
 ### From managed to removed
 
+    @Test
+    public void testFromManagedToRemoved() {
+        ContactablePerson p = createContactablePerson();
+        em.persist(p);
+
+        em.remove(p);
+        assertFalse("entity has been removed and it is not managed", em.contains(p));
+    }
+
 ### From removed to managed
 
 Although this transition is not documented in the Oracle diagram above, it is possible
