@@ -85,12 +85,35 @@ public class EntitiesStateTest {
 	}
 	
 	@Test
+	public void testFromDetachedToManaged() {
+		ContactablePerson p = createContactablePerson();
+		em.persist(p);
+		em.detach(p);
+		
+		ContactablePerson mergedPerson = em.merge(p);
+		
+		assertFalse("original entity is not managed...", em.contains(p));
+		assertTrue("... but merged one is", em.contains(mergedPerson));
+	}
+	
+	@Test
 	public void testFromManagedToRemoved() {
 		ContactablePerson p = createContactablePerson();
 		em.persist(p);
 
 		em.remove(p);
 		assertFalse("entity has been removed and it is not managed", em.contains(p));
+	}
+	
+	@Test
+	public void testFromRemovedToManaged() {
+		ContactablePerson p = createContactablePerson();
+		em.persist(p);
+		em.remove(p);
+		assertFalse("entity has been removed", em.contains(p));
+		
+		em.persist(p);
+		assertTrue("entity is managed again", em.contains(p));
 	}
 	
 	private ContactablePerson createContactablePerson() {
