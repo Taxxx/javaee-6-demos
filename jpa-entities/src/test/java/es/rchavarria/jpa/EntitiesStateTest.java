@@ -1,6 +1,7 @@
 package es.rchavarria.jpa;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,14 @@ public class EntitiesStateTest {
 		ContactablePerson p = createContactablePerson();
 		
 		assertFalse("entity's state is 'new'", em.contains(p));
+	}
+
+	@Test
+	public void testFromNewToManaged() {
+		ContactablePerson p = createContactablePerson();
+
+		em.persist(p);
+		assertTrue("entity's state is 'managed'", em.contains(p));
 	}
 	
 	private ContactablePerson createContactablePerson() {
