@@ -113,6 +113,29 @@ In the following steps we will learn how to *move* an entity from one state to a
 
 Using the `persist` method, quite easy:
 
+    @Test
+    public void testFromNewToManaged() {
+        ContactablePerson p = createContactablePerson();
+
+        em.persist(p);
+        assertTrue("entity's state is 'managed'", em.contains(p));
+    }
+
+### From managed to detached
+
+There are two ways of detaching an entity:
+
+1. Using `detach` method:
+
+    @Test
+    public void testFromManagedToDetachedUsingDetachMethod() {
+        ContactablePerson p = createContactablePerson();
+        em.persist(p);
+
+        em.detach(p);
+        assertFalse("entity is not in persistence context", em.contains(p));
+    }
+
 
 
 # Run

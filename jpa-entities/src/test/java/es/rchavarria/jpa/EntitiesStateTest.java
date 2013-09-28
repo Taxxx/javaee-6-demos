@@ -61,6 +61,15 @@ public class EntitiesStateTest {
 		em.persist(p);
 		assertTrue("entity's state is 'managed'", em.contains(p));
 	}
+
+	@Test
+	public void testFromManagedToDetachedUsingDetachMethod() {
+		ContactablePerson p = createContactablePerson();
+		em.persist(p);
+
+		em.detach(p);
+		assertFalse("entity is not in persistence context", em.contains(p));
+	}
 	
 	private ContactablePerson createContactablePerson() {
 		ContactablePerson p = new ContactablePerson();
