@@ -69,10 +69,29 @@ but we will use it first, and then we will refactor our test:
         emf.close();
     }
 
-Browse the final code in the repository to see how it looks like at the end.
+Browse the final code in the repository to see how it looks like at the end. Classes
+involved in this step are: `Person` and `BasicPersistenceTest`.
 
-2. testing persistence of a basic entity
-3. persistence of a little more complicated entity
+## Persisting a more complicated entity
+
+For this step we will use a diferent entity, just to not hide the previous one. 
+The entity is called `ContactablePerson` and it has the same information as 
+`Person` plus a list of phone numbers you can call her.
+
+These phone numbers are a different entity, and the goal in this step is to 
+handle more complex entities and their relationship. In this case, this
+relationship is a one-to-many (one person can have many numbers). The 
+`@OneToMany` annotation denotes that relationship.
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Phone> phones;
+
+We use `CascadeType.ALL` to tell Hibernate to propagate all operations (persist,
+remove, update,...) over the entities of the relationship. If we don't do that,
+we have to do all those operations manually, and in this cases, it's 
+an annoyance. There might be situations where we want to do manually, but it's
+not the case here.
+
 4. entity states and lifecycle
 
 # Run
