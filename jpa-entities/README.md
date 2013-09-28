@@ -48,10 +48,28 @@ in the database.
     }
 
 Take a look to the first version of our test. All necessary code is condensed in
-one method. This is a bad practice, but we will use it first, and then we will
-refactor our test:
+one method and there is not exception handling. Those are bad practices, 
+but we will use it first, and then we will refactor our test:
 
+    @Test
+    public void test() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test-jpa");
+        EntityManager em = emf.createEntityManager();
+        
+        Person p = new Person();
+        p.setName("Foo bar");
+        p.setAge(19);
+        
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(p);
+        tx.commit();
 
+        em.close();
+        emf.close();
+    }
+
+Browse the final code in the repository to see how it looks like at the end.
 
 2. testing persistence of a basic entity
 3. persistence of a little more complicated entity
