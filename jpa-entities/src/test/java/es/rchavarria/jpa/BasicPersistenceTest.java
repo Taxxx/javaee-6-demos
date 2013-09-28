@@ -23,12 +23,10 @@ public class BasicPersistenceTest {
 		em = emf.createEntityManager();
 
 		tx = em.getTransaction();
-		tx.begin();
 	}
 	
 	@After
 	public void tearDown() {
-		tx.commit();
 		em.close();
 		emf.close();
 	}
@@ -36,10 +34,11 @@ public class BasicPersistenceTest {
 	@Test
 	public void test() {
 		Person p = createPerson();
+
+		tx.begin();
 		em.persist(p);
 		tx.commit();
 		
-		tx.begin();
 		Person pp = em.find(Person.class, new Long(1));
 		assertEquals(p.getName(), pp.getName());
 	}
