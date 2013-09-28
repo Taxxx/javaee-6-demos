@@ -129,7 +129,10 @@ Using the `persist` method, quite easy:
 
 There are two ways of detaching an entity:
 
-1. Using `detach` method:
+1. Using `detach` method
+2. Closing the entity manager
+
+`detach` method:
 
     @Test
     public void testFromManagedToDetachedUsingDetachMethod() {
@@ -140,7 +143,7 @@ There are two ways of detaching an entity:
         assertFalse("entity is not in persistence context", em.contains(p));
     }
 
-2. Closing the entity manager
+Closing EM:
 
     @Test
     public void testFromManagedToDetachedClosingEntityManager() {
