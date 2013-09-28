@@ -3,5 +3,6 @@ target/**
 .project
 .settings
 .settings/**
+derby.log
 
 /target
