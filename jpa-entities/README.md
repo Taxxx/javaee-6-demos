@@ -1,8 +1,8 @@
 # Understanding JPA entities lifecycle
 
 In this demo, we will understand the JPA entities lifecycle, and we will
-learn how to move an entity from one state to another using JPA's 
-EntityManager methods.
+learn how to move an entity from one state to another using JPA 
+EntityManager's methods.
 
 # Instructions
 
