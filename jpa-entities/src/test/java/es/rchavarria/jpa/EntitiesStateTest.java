@@ -1,7 +1,6 @@
 package es.rchavarria.jpa;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +68,20 @@ public class EntitiesStateTest {
 
 		em.detach(p);
 		assertFalse("entity is not in persistence context", em.contains(p));
+	}
+	
+	@Test
+	public void testFromManagedToDetachedClosingEntityManager() {
+		ContactablePerson p = createContactablePerson();
+		em.persist(p);
+
+		tx.commit();
+		em.close();
+		
+		try {
+			em.contains(p);
+			fail("em should be closed, and the entity shouldn't be managed by him");
+		} catch (IllegalStateException e) { }
 	}
 	
 	private ContactablePerson createContactablePerson() {

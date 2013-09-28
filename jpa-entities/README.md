@@ -136,6 +136,32 @@ There are two ways of detaching an entity:
         assertFalse("entity is not in persistence context", em.contains(p));
     }
 
+2. Closing the entity manager
+
+    @Test
+    public void testFromManagedToDetachedClosingEntityManager() {
+        ContactablePerson p = createContactablePerson();
+        em.persist(p);
+
+        tx.commit();
+        em.close();
+        
+        try {
+            em.contains(p);
+            fail("em should be closed, and the entity shouldn't be managed by him");
+        } catch (IllegalStateException e) { }
+    }
+
+### From detached to managed
+
+### From managed to removed
+
+### From removed to managed
+
+Although this transition is not documented in the Oracle diagram above, it is possible
+to move an entity to managed once it has been removed. It is up to you to decide
+if this transition makes sense or it is a waste of time.
+
 
 
 # Run
