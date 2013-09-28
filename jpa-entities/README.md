@@ -21,6 +21,36 @@ they are still valid frameworks to develop our demo.
 - `persistence.xml`: it configures a persistence context. It will basically the
 same as in the old tutorial, and there is little to talk about him.
 
+Our persistence context, basically, is configured as: Hibernate as the implementation
+of JPA, Apache Derby as the database, the database will be created every time
+the application starts, and it will store data in memory, not in hard disc.
+
+## Testing the persistence of a basic entity
+
+We will start with a very simple entity. A `Person` with a name, and an age (and
+an identifier, of course). 
+
+Here, we will use JPA annotations to configure our class as a JPA entity, its
+primary key. This is how the Hibernate implemetation of JPA will store the entity
+in the database.
+
+    import javax.persistence.*;
+
+    @Entity
+    public class Person {
+
+        @Id @GeneratedValue
+        private long id;
+        private String name;
+        private int age;
+
+        // getters and setters
+    }
+
+Take a look to the first version of our test. All necessary code is condensed in
+one method. This is a bad practice, but we will use it first, and then we will
+refactor our test:
+
 
 
 2. testing persistence of a basic entity
