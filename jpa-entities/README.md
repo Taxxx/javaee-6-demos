@@ -92,7 +92,28 @@ we have to do all those operations manually, and in this cases, it's
 an annoyance. There might be situations where we want to do manually, but it's
 not the case here.
 
-4. entity states and lifecycle
+## Understanding entity states and lifecycle
+
+An entity can be in one of these states:
+
+- It does not exist yet: not a state by itself, but it's the origin of everything else.
+- New: it has just been instantiated using the new operator, it is not associated with a persistence context.
+- Managed: it has a persistent identity that is currently associated with a persistence context.
+- Detached: it has a persistent identity that is no longer associated with a persistence context, usually because the persistence context was closed or the instance was evicted from the context.
+- Removed: it has a persistent identity, associated with a persistence context, but scheduled for removal from the database.
+
+Here is a diagram, by Oracle documentation, where one can understand in a glimpse
+an entity lifecycle. 
+
+![JPA entity lifecycle](http://docs.oracle.com/cd/E16439_01/doc.1013/e13981/img/lifeent30.gif)
+
+In the following steps we will learn how to *move* an entity from one state to another.
+
+### From new to managed
+
+Using the `persist` method, quite easy:
+
+
 
 # Run
 
