@@ -97,10 +97,14 @@ not the case here.
 An entity can be in one of these states:
 
 - It does not exist yet: not a state by itself, but it's the origin of everything else.
-- New: it has just been instantiated using the new operator, it is not associated with a persistence context.
+- New: it has just been instantiated using the new operator, it is not associated 
+with a persistence context.
 - Managed: it has a persistent identity that is currently associated with a persistence context.
-- Detached: it has a persistent identity that is no longer associated with a persistence context, usually because the persistence context was closed or the instance was evicted from the context.
-- Removed: it has a persistent identity, associated with a persistence context, but scheduled for removal from the database.
+- Detached: it has a persistent identity that is no longer associated with a persistence
+context, usually because the persistence context was closed or the instance was evicted
+from the context.
+- Removed: it has a persistent identity, associated with a persistence context, but 
+scheduled for removal from the database.
 
 Here is a diagram, by Oracle documentation, where one can understand in a glimpse
 an entity lifecycle. 
@@ -154,6 +158,22 @@ There are two ways of detaching an entity:
 
 ### From detached to managed
 
+    @Test
+    public void testFromDetachedToManaged() {
+        ContactablePerson p = createContactablePerson();
+        em.persist(p);
+        em.detach(p);
+        
+        ContactablePerson mergedPerson = em.merge(p);
+        
+        assertFalse("original entity is not managed...", em.contains(p));
+        assertTrue("... but merged one is", em.contains(mergedPerson));
+    }
+
+It is possible to merge an entity previously managed but detached into the current
+persistence context. Be careful, the original object is not managed, but the 
+returned one is.
+
 ### From managed to removed
 
     @Test
@@ -169,9 +189,19 @@ There are two ways of detaching an entity:
 
 Although this transition is not documented in the Oracle diagram above, it is possible
 to move an entity to managed once it has been removed. It is up to you to decide
-if this transition makes sense or it is a waste of time.
+if this transition makes sense or it is a waste of time. This transition is possible
+using the `persist` method on the removed entity.
 
-
+    @Test
+    public void testFromRemovedToManaged() {
+        ContactablePerson p = createContactablePerson();
+        em.persist(p);
+        em.remove(p);
+        assertFalse("entity has been removed", em.contains(p));
+        
+        em.persist(p);
+        assertTrue("entity is managed again", em.contains(p));
+    }
 
 # Run
 
