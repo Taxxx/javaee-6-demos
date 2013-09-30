@@ -15,11 +15,29 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Framework dependency versions -->
+    <myfaces.version>4.8.2</myfaces.version>
     <junit.version>4.8.2</junit.version>
     <logging.version>1.7.5</logging.version>
   </properties>
 
   <dependencies>
+    <!-- apache myfaces -->
+    <dependency>
+      <groupId>org.apache.myfaces.core</groupId>
+      <artifactId>myfaces-api</artifactId>
+      <version>${myfaces.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.myfaces.core</groupId>
+      <artifactId>myfaces-impl</artifactId>
+      <version>${myfaces.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.myfaces.core</groupId>
+      <artifactId>tomahawk</artifactId>
+      <version>${myfaces.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
