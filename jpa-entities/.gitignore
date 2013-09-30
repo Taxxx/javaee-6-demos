@@ -4,5 +4,6 @@ target/**
 .settings
 .settings/**
 derby.log
+bin/**
 
 /target
