@@ -16,6 +16,7 @@
 
     <!-- Framework dependency versions -->
     <junit.version>4.8.2</junit.version>
+    <logging.version>1.7.5</logging.version>
   </properties>
 
   <dependencies>
@@ -24,6 +25,18 @@
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
+    </dependency>
+
+    <!--        Logging dependencies-->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${logging.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>${logging.version}</version>
     </dependency>
   </dependencies>
 
