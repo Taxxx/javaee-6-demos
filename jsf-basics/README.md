@@ -5,6 +5,8 @@ JavaServer Faces technology works.
 
 # Instructions
 
+1. start with a maven webapp archetype
+2. add dependencies: junit, slf4j, myfaces(api, impl)
 
 # Run
 
