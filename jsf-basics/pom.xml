@@ -15,10 +15,28 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Framework dependency versions -->
-    <myfaces.version>4.8.2</myfaces.version>
+    <myfaces.version>2.1.12</myfaces.version>
+    <jetty.version>8.1.3.v20120416</jetty.version>
     <junit.version>4.8.2</junit.version>
     <logging.version>1.7.5</logging.version>
   </properties>
+
+  <build>
+    <defaultGoal>jetty:run</defaultGoal>
+    
+    <plugins>
+      <plugin>
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>${jetty.version}</version>
+        <configuration>
+          <webApp>
+            <contextPath>/</contextPath>
+          </webApp>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
   <dependencies>
     <!-- apache myfaces -->
@@ -30,11 +48,6 @@
     <dependency>
       <groupId>org.apache.myfaces.core</groupId>
       <artifactId>myfaces-impl</artifactId>
-      <version>${myfaces.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.myfaces.core</groupId>
-      <artifactId>tomahawk</artifactId>
       <version>${myfaces.version}</version>
     </dependency>
 
