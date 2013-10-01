@@ -7,10 +7,10 @@ JavaServer Faces technology works.
 
 1. start with a maven webapp archetype
 2. add dependencies: junit, slf4j, myfaces(api, impl)
-3. configure FacesServlet in web.xml file
+3. configure FacesServlet in web.xml file, adding a listener to start MyFaces initialization
 4. create a managed bean @ManagedBean(name = "welcome", eager = true)
 5. create a view template home.xhtml
-6. run and visit /¿*?/home.jsf
+6. run and visit /home.jsf
 7. what else?
 
 # Run
