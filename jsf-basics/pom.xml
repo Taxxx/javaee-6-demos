@@ -16,6 +16,8 @@
 
     <!-- Framework dependency versions -->
     <myfaces.version>2.1.12</myfaces.version>
+    <tomahawk.version>1.1.14</tomahawk.version>
+    <servlet.version>3.0.1</servlet.version>
     <jetty.version>8.1.3.v20120416</jetty.version>
     <junit.version>4.8.2</junit.version>
     <logging.version>1.7.5</logging.version>
@@ -50,7 +52,18 @@
       <artifactId>myfaces-impl</artifactId>
       <version>${myfaces.version}</version>
     </dependency>
+    <dependency>
+    	<groupId>org.apache.myfaces.tomahawk</groupId>
+    	<artifactId>tomahawk20</artifactId>
+    	<version>${tomahawk.version}</version>
+    </dependency>
 
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${servlet.version}</version>
+    </dependency>
+    
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -68,16 +81,6 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>${logging.version}</version>
-    </dependency>
-    <dependency>
-    	<groupId>javax.servlet</groupId>
-    	<artifactId>javax.servlet-api</artifactId>
-    	<version>3.0.1</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.apache.myfaces.tomahawk</groupId>
-    	<artifactId>tomahawk20</artifactId>
-    	<version>1.1.14</version>
     </dependency>
   </dependencies>
 

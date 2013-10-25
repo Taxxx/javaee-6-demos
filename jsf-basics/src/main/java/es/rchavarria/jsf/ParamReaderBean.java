@@ -38,6 +38,6 @@ public class ParamReaderBean {
 	}
 	
 	public String login() {
-		return "home";
+		return "login";
 	}
 }
