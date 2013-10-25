@@ -3,6 +3,11 @@
 In this demo, we will write a very simple application to learn how
 JavaServer Faces technology works.
 
+It will be similar to other demos. We will have a wellcome page, with a form
+where the user can enter an email and a password. When the submit button is
+pressed, we will navigate to a new page showing the request params and its
+values.
+
 # Instructions
 
 1. start with a maven webapp archetype
@@ -19,6 +24,8 @@ JavaServer Faces technology works.
 
 # Run
 
+Run the maven command `mvn jetty:run` or just `mvn` to start the server. Then,
+visit [http://localhost:8080/login.jsf] and play!.
 
 # Further reading
 
