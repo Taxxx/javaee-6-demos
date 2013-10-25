@@ -2,11 +2,11 @@ package es.rchavarria.jsf;
 
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean(name = "welcome", eager = true)
+@ManagedBean(name = "login", eager = true)
 public class GreetingBean {
 
 	public String getMessage() {
-		return "A welcome message to you: Hello World!";
+		return "Login user";
 	}
 
 	/**
