@@ -2,7 +2,8 @@
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
 
   <head>
     <meta charset="utf-8" />
@@ -20,6 +21,22 @@
 
       <h2>#{paramReader.title}</h2>
 
-    </div>
+      <ul>
+        <t:dataList id="data1" 
+                    styleClass="standardList" 
+                    var="aParam"
+                    value="#{paramReader.params}"
+                    layout="simple">
+          <li>
+            <h:outputText value="#{aParam.key}" /> :
+            <h:outputText value="#{aParam.value}" /> : 
+          </li>
+        </t:dataList>
+      </ul>
+
+      <h:form>
+        <h:commandLink action="#{paramReader.login}">Back to login page</h:commandLink>
+      </h:form>
+	  </div>
   </body>
 </html>
