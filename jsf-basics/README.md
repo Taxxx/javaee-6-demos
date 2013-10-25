@@ -9,8 +9,12 @@ JavaServer Faces technology works.
 2. add dependencies: junit, slf4j, myfaces(api, impl)
 3. configure FacesServlet in web.xml file, adding a listener to start MyFaces initialization
 4. create a managed bean @ManagedBean(name = "welcome", eager = true)
-5. create a view template home.xhtml
-6. run and visit /home.jsf
+5. create a view template login.xhtml
+	it has a login form and transfer control to success.xhtml
+6. create a new managed bean to read parameters from request
+7. create a view template success.xhtml
+	it shows the params returned by the seconde managed bean
+6. run and visit /login.jsf
 7. what else?
 
 # Run

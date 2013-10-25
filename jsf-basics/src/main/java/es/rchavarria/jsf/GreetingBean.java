@@ -8,4 +8,11 @@ public class GreetingBean {
 	public String getMessage() {
 		return "A welcome message to you: Hello World!";
 	}
+
+	/**
+	 * Action method returning the next view
+	*/
+	public String submit() {
+		return "success";
+	}
 }
