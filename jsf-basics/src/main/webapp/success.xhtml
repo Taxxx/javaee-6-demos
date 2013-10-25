@@ -22,11 +22,8 @@
       <h2>#{paramReader.title}</h2>
 
       <ul>
-        <t:dataList id="data1" 
-                    styleClass="standardList" 
-                    var="aParam"
-                    value="#{paramReader.params}"
-                    layout="simple">
+        <t:dataList var="aParam"
+                    value="#{paramReader.params}">
           <li>
             <h:outputText value="#{aParam.key}" /> :
             <h:outputText value="#{aParam.value}" /> : 
