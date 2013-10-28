@@ -39,9 +39,37 @@ implementation.
 
 3. Configure FacesServlet in webapp descriptor file.
 
+We need to configure a servlet, the FacesServlet, to handle all JSF invocations.
+To do so, we need to modify the `web.xml` file:
 
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
 
-web.xml file, adding a listener to start MyFaces initialization
+Basically, it means: our servlet `Faces Servlet` will handle all requests 
+ending in `.jsf`.
+
+Most tutorials don't go further, but this configuration doesn't work. We need to
+setup a servlet listener, to start MyFaces initialization. So, be sure to
+include the following config:
+
+	<listener>
+		<listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+	</listener>
+
+This is a demo, and we are under a development stage, so I would recomend to use
+this context param for our servlet (see a list of lots of context params documented
+in the [Apache MyFaces project](https://myfaces.apache.org/core21/myfaces-impl/webconfig.html)). 
+
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
 
 4. create a managed bean @ManagedBean(name = "welcome", eager = true)
 5. create a view template login.xhtml
