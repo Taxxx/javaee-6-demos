@@ -127,7 +127,21 @@ The `h:commandButton` element will allow us to use the method `submit()` of our
 managed bean to control the next step in the navigation model. This method is usually
 known as an *action method*.
 
-6. create a new managed bean to read parameters from request
+6. Create another managed bean
+
+We will create a new managed bean, called `paramReader`. Its purpouse will be to
+read the request parameters and return them to a view template.
+
+To read the parameters, we will access to the `HttpServletRequest` object through the
+`FacesContext` and its `ExternalContext` object:
+
+	public List<Parameter> getParams() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
+		// ...		
+		return params;
+	}
+
 7. create a view template success.xhtml
 	it shows the params returned by the seconde managed bean
 6. run and visit /login.jsf
