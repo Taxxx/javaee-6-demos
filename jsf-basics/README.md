@@ -91,8 +91,42 @@ take a look to the code:
 
 We will learn how to acces this managed bean in a `.jsf` page in the next step.
 
-5. create a view template login.xhtml
-	it has a login form and transfer control to success.xhtml
+5. Create a view template for login page
+
+Facelets is the default templating system in JSF 2.0, and the code is stored in 
+`.xhtml` files. We can use JSF components inside this view and we can access 
+managed beans (and other elements) through the Expresion Language, built in 
+Java EE.
+
+Take a look to the `login.xmtl` file under the `src/webapp` folder. You will find
+something similar to this:
+
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml"
+	      xmlns:f="http://java.sun.com/jsf/core"
+	      xmlns:h="http://java.sun.com/jsf/html">
+	<!-- ... -->
+	      <h:form styleClass="form-signin">
+	        <h2>#{login.message}</h2>
+
+	        <h:commandButton id="login" value="Log me in" 
+	                         styleClass="btn btn-lg btn-primary btn-block"
+	                         action="#{login.submit}" />
+	      </h:form>
+	</html>
+
+Note that we define two new namespaces: `f` and `h`. This will allow us to use
+components provided by JSF.
+
+We are getting the `h2` title from our managed bean `login` through an Expression
+Language statement: `#{login.message}`. This will invoke the method `getMessage()`
+of our managed bean.
+
+The `h:commandButton` element will allow us to use the method `submit()` of our
+managed bean to control the next step in the navigation model. This method is usually
+known as an *action method*.
+
 6. create a new managed bean to read parameters from request
 7. create a view template success.xhtml
 	it shows the params returned by the seconde managed bean
