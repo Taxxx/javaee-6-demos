@@ -175,9 +175,6 @@ It would look similar to this:
 We will use the action method `login()` in the `h:commandLink` element to navigate
 back to our login page.
 
-6. run and visit /login.jsf
-7. what else?
-
 # Run
 
 Run the maven command `mvn jetty:run` or just `mvn` to start the server. Then,
@@ -195,5 +192,3 @@ Facelets is the default templating system for JSF, instead of JSP's pages
 an implementation developed by Apache.
 - [Kinds of managed beans](http://java.dzone.com/articles/making-distinctions-between):
 a comparison table of several kinds of managed beans.
-- []():
-
