@@ -98,7 +98,7 @@ Facelets is the default templating system in JSF 2.0, and the code is stored in
 managed beans (and other elements) through the Expresion Language, built in 
 Java EE.
 
-Take a look to the `login.xmtl` file under the `src/webapp` folder. You will find
+Take a look to the `login.xhtml` file under the `src/webapp` folder. You will find
 something similar to this:
 
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -178,7 +178,7 @@ back to our login page.
 # Run
 
 Run the maven command `mvn jetty:run` or just `mvn` to start the server. Then,
-visit [http://localhost:8080/login.jsf] and play!.
+visit [http://localhost:8080/login.jsf](http://localhost:8080/login.jsf) and play!.
 
 # Further reading
 
