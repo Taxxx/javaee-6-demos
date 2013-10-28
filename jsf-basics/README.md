@@ -15,7 +15,7 @@ values.
 The fastest way to start is using a maven archetype. So, why not start using
 the maven webapp archetype by default? Type the following command:
 
-	mvn archetype:generate -DgroupId=<group-id> -DartifactId=<app-id> -DarchetypeArtifactId=maven-archetype-webapp
+    mvn archetype:generate -DgroupId=<group-id> -DartifactId=<app-id> -DarchetypeArtifactId=maven-archetype-webapp
 
 Where `group-id` is your group name, for example, your company name followed by 
 your project name, such as `es.rchavarria.jsf`. The `app-id` is the name of
@@ -58,9 +58,9 @@ Most tutorials don't go further, but this configuration doesn't work. We need to
 setup a servlet listener, to start MyFaces initialization. So, be sure to
 include the following config:
 
-	<listener>
-		<listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
-	</listener>
+    <listener>
+        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+    </listener>
 
 This is a demo, and we are under a development stage, so I would recomend to use
 this context param for our servlet (see a list of lots of context params documented
@@ -80,14 +80,14 @@ It is fairly simple, just use the annotation `@ManagedBean` and you'll get it.
 We can use it, for example, to return a title for our future login form. Let's
 take a look to the code:
 
-	import javax.faces.bean.ManagedBean;
+    import javax.faces.bean.ManagedBean;
 
-	@ManagedBean(name = "login", eager = true)
-	public class GreetingBean {
-		public String getMessage() {
-			return "Login user";
-		}
-	}
+    @ManagedBean(name = "login", eager = true)
+    public class GreetingBean {
+        public String getMessage() {
+            return "Login user";
+        }
+    }
 
 We will learn how to acces this managed bean in a `.jsf` page in the next step.
 
@@ -101,20 +101,20 @@ Java EE.
 Take a look to the `login.xmtl` file under the `src/webapp` folder. You will find
 something similar to this:
 
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-	<html xmlns="http://www.w3.org/1999/xhtml"
-	      xmlns:f="http://java.sun.com/jsf/core"
-	      xmlns:h="http://java.sun.com/jsf/html">
-	<!-- ... -->
-	      <h:form styleClass="form-signin">
-	        <h2>#{login.message}</h2>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+    <!-- ... -->
+          <h:form styleClass="form-signin">
+            <h2>#{login.message}</h2>
 
-	        <h:commandButton id="login" value="Log me in" 
-	                         styleClass="btn btn-lg btn-primary btn-block"
-	                         action="#{login.submit}" />
-	      </h:form>
-	</html>
+            <h:commandButton id="login" value="Log me in" 
+                             styleClass="btn btn-lg btn-primary btn-block"
+                             action="#{login.submit}" />
+          </h:form>
+    </html>
 
 Note that we define two new namespaces: `f` and `h`. This will allow us to use
 components provided by JSF.
@@ -135,15 +135,46 @@ read the request parameters and return them to a view template.
 To read the parameters, we will access to the `HttpServletRequest` object through the
 `FacesContext` and its `ExternalContext` object:
 
-	public List<Parameter> getParams() {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
-		// ...		
-		return params;
-	}
+    public List<Parameter> getParams() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
+        // ...      
+        return params;
+    }
 
-7. create a view template success.xhtml
-	it shows the params returned by the seconde managed bean
+7. Create another view template
+
+In this new view, we will handle the list of values returned by the `paramReader`
+bean. JSF, by default, doesn't provide any component to handle a list of values, 
+so we will use Apache Tomahawk, and its component `dataList` to handle them.
+
+Our view, `success.xhtml`, will show the list of values in an unordered HTML list.
+It would look similar to this:
+
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:t="http://myfaces.apache.org/tomahawk">
+    <!-- ... -->
+          <ul>
+            <t:dataList var="aParam"
+                        value="#{paramReader.params}">
+              <li>
+                <h:outputText value="#{aParam.key}" /> :
+                <h:outputText value="#{aParam.value}" />
+              </li>
+            </t:dataList>
+          </ul>
+
+          <h:form>
+            <h:commandLink action="#{paramReader.login}">Back to login page</h:commandLink>
+          </h:form>
+    </html>
+
+We will use the action method `login()` in the `h:commandLink` element to navigate
+back to our login page.
+
 6. run and visit /login.jsf
 7. what else?
 
