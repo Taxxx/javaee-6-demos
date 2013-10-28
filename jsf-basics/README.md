@@ -10,9 +10,39 @@ values.
 
 # Instructions
 
-1. start with a maven webapp archetype
-2. add dependencies: junit, slf4j, myfaces(api, impl)
-3. configure FacesServlet in web.xml file, adding a listener to start MyFaces initialization
+1. Start with a maven webapp archetype
+
+The fastest way to start is using a maven archetype. So, why not start using
+the maven webapp archetype by default? Type the following command:
+
+	mvn archetype:generate -DgroupId=<group-id> -DartifactId=<app-id> -DarchetypeArtifactId=maven-archetype-webapp
+
+Where `group-id` is your group name, for example, your company name followed by 
+your project name, such as `es.rchavarria.jsf`. The `app-id` is the name of
+your new application. We will use `jsf-basics`.
+
+This command will create the skeleton of a Java web application, including an
+index `.jsp` page and a `web.xml` file, describing the web application. We will
+modify these files and others to complete our demo.
+
+2. Add dependencies
+
+Now it's the time to add our needed dependencies, let's start:
+
+- `myfaces-api`: The public API classes of the Apache MyFaces CORE project.
+- `myfaces-impl`: The private implementation classes of the Apache MyFaces Core 
+Implementation
+- `tomahawk20`: JSF components and utilities to use in a JSF 2.x implementation.
+- `javax-servlet`: We will access to http request objects through the servlet
+implementation.
+- `jetty`: Include jetty as our server for development.
+
+3. Configure FacesServlet in webapp descriptor file.
+
+
+
+web.xml file, adding a listener to start MyFaces initialization
+
 4. create a managed bean @ManagedBean(name = "welcome", eager = true)
 5. create a view template login.xhtml
 	it has a login form and transfer control to success.xhtml
