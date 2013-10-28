@@ -71,7 +71,26 @@ in the [Apache MyFaces project](https://myfaces.apache.org/core21/myfaces-impl/w
         <param-value>Development</param-value>
     </context-param>
 
-4. create a managed bean @ManagedBean(name = "welcome", eager = true)
+4. Create a managed bean called `login`
+
+We will create a simple managed bean, and it will allow us to access it in our
+JSF view, our first page that we will see later.
+
+It is fairly simple, just use the annotation `@ManagedBean` and you'll get it.
+We can use it, for example, to return a title for our future login form. Let's
+take a look to the code:
+
+	import javax.faces.bean.ManagedBean;
+
+	@ManagedBean(name = "login", eager = true)
+	public class GreetingBean {
+		public String getMessage() {
+			return "Login user";
+		}
+	}
+
+We will learn how to acces this managed bean in a `.jsf` page in the next step.
+
 5. create a view template login.xhtml
 	it has a login form and transfer control to success.xhtml
 6. create a new managed bean to read parameters from request
@@ -95,5 +114,7 @@ Wikipedia entry for JavaServer Faces.
 Facelets is the default templating system for JSF, instead of JSP's pages
 - [MyFaces](https://myfaces.apache.org/):
 an implementation developed by Apache.
+- [Kinds of managed beans](http://java.dzone.com/articles/making-distinctions-between):
+a comparison table of several kinds of managed beans.
 - []():
 
