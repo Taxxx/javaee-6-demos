@@ -10,7 +10,7 @@ values.
 
 # Instructions
 
-1. Start with a maven webapp archetype
+## Start with a maven webapp archetype
 
 The fastest way to start is using a maven archetype. So, why not start using
 the maven webapp archetype by default? Type the following command:
@@ -25,7 +25,7 @@ This command will create the skeleton of a Java web application, including an
 index `.jsp` page and a `web.xml` file, describing the web application. We will
 modify these files and others to complete our demo.
 
-2. Add dependencies
+## Add dependencies
 
 Now it's the time to add our needed dependencies, let's start:
 
@@ -37,7 +37,7 @@ Implementation
 implementation.
 - `jetty`: Include jetty as our server for development.
 
-3. Configure FacesServlet in webapp descriptor file.
+## Configure FacesServlet in webapp descriptor file.
 
 We need to configure a servlet, the FacesServlet, to handle all JSF invocations.
 To do so, we need to modify the `web.xml` file:
@@ -71,7 +71,7 @@ in the [Apache MyFaces project](https://myfaces.apache.org/core21/myfaces-impl/w
         <param-value>Development</param-value>
     </context-param>
 
-4. Create a managed bean called `login`
+## Create a managed bean called `login`
 
 We will create a simple managed bean, and it will allow us to access it in our
 JSF view, our first page that we will see later.
@@ -91,7 +91,7 @@ take a look to the code:
 
 We will learn how to acces this managed bean in a `.jsf` page in the next step.
 
-5. Create a view template for login page
+## Create a view template for login page
 
 Facelets is the default templating system in JSF 2.0, and the code is stored in 
 `.xhtml` files. We can use JSF components inside this view and we can access 
@@ -127,7 +127,7 @@ The `h:commandButton` element will allow us to use the method `submit()` of our
 managed bean to control the next step in the navigation model. This method is usually
 known as an *action method*.
 
-6. Create another managed bean
+## Create another managed bean
 
 We will create a new managed bean, called `paramReader`. Its purpouse will be to
 read the request parameters and return them to a view template.
@@ -142,7 +142,7 @@ To read the parameters, we will access to the `HttpServletRequest` object throug
         return params;
     }
 
-7. Create another view template
+## Create another view template
 
 In this new view, we will handle the list of values returned by the `paramReader`
 bean. JSF, by default, doesn't provide any component to handle a list of values, 
