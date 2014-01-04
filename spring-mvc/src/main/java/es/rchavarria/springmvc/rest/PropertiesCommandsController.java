@@ -25,4 +25,9 @@ public class PropertiesCommandsController {
 	@Autowired
 	private PropertyService propertyService;
 
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	public void deleteProperty(@PathVariable String id) {
+		LOGGER.info("deleting property with id: " + id);
+		propertyService.deleteProperty(id);
+	}
 }

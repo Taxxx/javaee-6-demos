@@ -28,7 +28,7 @@ public class PropertiesCommandsControllerIntegrationTest {
     private MockMvc mockMvc;
 
     @InjectMocks
-    PropertiesQueriesController controller;
+    PropertiesCommandsController controller;
 
     @Mock
     PropertyService propertyService;
