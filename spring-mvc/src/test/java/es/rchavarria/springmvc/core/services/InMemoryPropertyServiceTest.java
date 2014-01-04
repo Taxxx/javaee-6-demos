@@ -38,5 +38,30 @@ public class InMemoryPropertyServiceTest {
 		
 		assertEquals(2, service.requestAllProperties().size());
 	}
+	
+	@Test
+	public void testCreateProperty() {
+		assertEquals(3, service.requestAllProperties().size());
+		
+		service.createProperty(Property.fromAttributes("a city", "an address", 54321));
+		
+		assertEquals(4, service.requestAllProperties().size());
+	}
+	
+	@Test
+	public void testUpdateProperty() {
+		service.createProperty(Property.fromAttributes("a city", "an address", 54321));
+		assertEquals(4, service.requestAllProperties().size());
+		
+		service.updateProperty(Property.fromAttributes("a city", "different address", 12345));
+		
+		Property property = service.findById("a city");
+		assertEquals( "it shouldn't create a new property", 
+				4, service.requestAllProperties().size());
+		assertEquals("it should update address",
+				"different address", property.getAddress());
+		assertEquals("it should update price",
+				12345, property.getPrice());
+	}
 
 }

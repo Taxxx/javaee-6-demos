@@ -41,4 +41,10 @@ public class InMemoryPropertyService implements PropertyService {
 	public void createProperty(Property property) {
 		repository.put(property.getCity(), property);
 	}
+	
+	@Override
+	public void updateProperty(Property property) {
+		// there is no more logic needed so far
+		createProperty(property);
+	}
 }
