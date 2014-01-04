@@ -1,5 +1,6 @@
 package es.rchavarria.springmvc.rest;
 
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -40,7 +41,7 @@ public class PropertiesQueriesIntegrationTest {
     }
 
     @Test
-    public void testRequestAllCoursesUsesHttpOK() throws Exception {
+    public void testRequestAllPropertiesUsesHttpOK() throws Exception {
         when(propertyService.requestAllProperties()).thenReturn(allProperties());
 
         mockMvc.perform(get("/properties")
@@ -50,7 +51,7 @@ public class PropertiesQueriesIntegrationTest {
     }
 
 	@Test
-    public void testRequestAllCoursesRendersOkAsJSON() throws Exception {
+    public void testRequestAllPropertiesRendersOkAsJSON() throws Exception {
 		when(propertyService.requestAllProperties()).thenReturn(allProperties());
 
         mockMvc.perform(get("/properties")
@@ -59,6 +60,18 @@ public class PropertiesQueriesIntegrationTest {
             .andExpect(jsonPath("$[0]").value("one"))
 	        .andExpect(jsonPath("$[1]").value("two"))
 	        .andExpect(jsonPath("$[2]").value("three"));
+    }
+
+    @Test
+    public void testRequestAPropertyUsesHttpOK() throws Exception {
+        when(propertyService.requestAllProperties()).thenReturn(allProperties());
+
+        fail("requesting a single property will return an object with property info: city, address and price");
+        
+        mockMvc.perform(get("/properties/{id}", "an arbitrary id")
+            .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk());
     }
 
 	// fixture method
