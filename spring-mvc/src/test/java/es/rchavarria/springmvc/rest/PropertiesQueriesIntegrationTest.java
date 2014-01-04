@@ -4,7 +4,8 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 import java.util.Arrays;
@@ -20,6 +21,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.web.servlet.MockMvc;
 
 import es.rchavarria.springmvc.core.services.PropertyService;
+import es.rchavarria.springmvc.rest.domain.Property;
 
 public class PropertiesQueriesIntegrationTest {
   
@@ -57,9 +59,9 @@ public class PropertiesQueriesIntegrationTest {
         mockMvc.perform(get("/properties")
             .accept(MediaType.APPLICATION_JSON))
             .andDo(print())
-            .andExpect(jsonPath("$[0]").value("one"))
-	        .andExpect(jsonPath("$[1]").value("two"))
-	        .andExpect(jsonPath("$[2]").value("three"));
+            .andExpect(jsonPath("$[0].city").value("first city"))
+	        .andExpect(jsonPath("$[1].address").value("second address"))
+	        .andExpect(jsonPath("$[2].price").value(300));
     }
 
     @Test
@@ -75,7 +77,11 @@ public class PropertiesQueriesIntegrationTest {
     }
 
 	// fixture method
-    private List<String> allProperties() {
-		return Arrays.asList("one", "two", "three");
+    private List<Property> allProperties() {
+		return Arrays.asList(
+				new Property("first city", "first address", 100),
+				new Property("second city", "second address", 200),
+				new Property("third city", "third address", 300)
+				);
 	}
 }

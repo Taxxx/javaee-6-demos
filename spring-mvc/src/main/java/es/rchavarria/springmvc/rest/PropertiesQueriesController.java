@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import es.rchavarria.springmvc.core.services.PropertyService;
+import es.rchavarria.springmvc.rest.domain.Property;
 
 @Controller
 @RequestMapping("/properties")
@@ -22,7 +23,7 @@ public class PropertiesQueriesController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public List<String> getAllProperties() {
+	public List<Property> getAllProperties() {
 		return propertyService.requestAllProperties();
 	}
 }
