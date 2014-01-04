@@ -158,7 +158,25 @@ Please, see integration test: `MVCConfigIntegrationTest`.
 Again, we won't use any XML file to configure our application, we will configure
 it programatically.
 
+We will extend a class provided by Spring, `AbstractAnnotationConfigDispatcherServletInitializer`,
+and we have to override some methods:
+- `getRootConfigClasses`: it should return an array of classes that configures the root context.
+So far, we don't have root context, so, it will return an empty array or null.
+- `getServletConfigClasses`: it should return return an array of classes that configure the 
+servlet context.
+- `getServletMappings`: it should return the mappings for the servlet.
 
+Now, we are ready to run our demo application in a servlet container. In this case, we 
+will run the demo in a Tomcat 7 server. We will add the tomcat7 maven plugin and run it
+with a command:
+
+	<plugin>
+	    <groupId>org.apache.tomcat.maven</groupId>
+	    <artifactId>tomcat7-maven-plugin</artifactId>
+	    <version>2.2</version>
+	</plugin>
+
+Run with the command: `mvn tomcat7:run`
 
 # Resources
 
