@@ -20,6 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
 
+import ch.qos.logback.core.util.ContentTypeUtil;
 import es.rchavarria.springmvc.core.services.PropertyService;
 import es.rchavarria.springmvc.rest.domain.Property;
 
@@ -54,8 +55,11 @@ public class PropertiesCommandsControllerIntegrationTest {
 
     @Test
     public void testCreatePropertyUsesHttpOK() throws Exception {
+    	String json = "{\"city\":\"a new city\",\"address\":\"a new address\",\"price\":54321}";
+    	
         mockMvc.perform(post("/properties")
-        	.content("{\"city\":\"a new city\",\"address\":\"a new address\",\"price\":54321}")
+        	.content(json)
+        	.contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON))
             .andDo(print())
             .andExpect(status().isOk());
