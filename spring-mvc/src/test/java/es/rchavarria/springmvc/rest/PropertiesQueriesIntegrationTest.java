@@ -40,7 +40,7 @@ public class PropertiesQueriesIntegrationTest {
     }
 
     @Test
-    public void testRequestAllCoursesUsesHttpOK() throws Exception {
+    public void testRequestAllPropertiesUsesHttpOK() throws Exception {
         when(propertyService.requestAllProperties()).thenReturn(allProperties());
 
         mockMvc.perform(get("/properties")
@@ -50,7 +50,7 @@ public class PropertiesQueriesIntegrationTest {
     }
 
 	@Test
-    public void testRequestAllCoursesRendersOkAsJSON() throws Exception {
+    public void testRequestAllPropertiesRendersOkAsJSON() throws Exception {
 		when(propertyService.requestAllProperties()).thenReturn(allProperties());
 
         mockMvc.perform(get("/properties")
@@ -59,6 +59,16 @@ public class PropertiesQueriesIntegrationTest {
             .andExpect(jsonPath("$[0]").value("one"))
 	        .andExpect(jsonPath("$[1]").value("two"))
 	        .andExpect(jsonPath("$[2]").value("three"));
+    }
+
+    @Test
+    public void testRequestAPropertyUsesHttpOK() throws Exception {
+        when(propertyService.requestAllProperties()).thenReturn(allProperties());
+
+        mockMvc.perform(get("/properties/{id}", "an arbitrary id")
+            .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk());
     }
 
 	// fixture method
