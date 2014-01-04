@@ -8,4 +8,6 @@ public interface PropertyService {
 
 	List<Property> requestAllProperties();
 
+	Property findById(String id);
+
 }

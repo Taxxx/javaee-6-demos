@@ -1,4 +1,4 @@
-# restfulmvc
+# Spring MVC
 
 In this demo, we will create an application to show the use 
 of the Spring MVC framework for creating RESTful services.
@@ -94,7 +94,7 @@ our controller
 And the next code snippet shows how to test a simple HTTP GET request:
 
     @Test
-    public void testRequestAllCoursesUsesHttpOK() throws Exception {
+    public void testRequestAllPropertiesUsesHttpOK() throws Exception {
         when(propertyService.requestAllProperties()).thenReturn(allProperties());
 
         mockMvc.perform(get("/properties")
@@ -104,22 +104,61 @@ And the next code snippet shows how to test a simple HTTP GET request:
 
 We will create another test, just to perform more expectations on the result:
 
-    @Test
-    public void testRequestAllCoursesUsesHttpOK() throws Exception {
-        when(propertyService.requestAllProperties()).thenReturn(allProperties());
+	@Test
+    public void testRequestAllPropertiesRendersOkAsJSON() throws Exception {
+		when(propertyService.requestAllProperties()).thenReturn(allProperties());
 
         mockMvc.perform(get("/properties")
             .accept(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("$[0]").value("one");
+            .andDo(print())
+            .andExpect(jsonPath("$[0].city").value("first city"))
+	        .andExpect(jsonPath("$[1].address").value("second address"))
+	        .andExpect(jsonPath("$[2].price").value(300));
     }
 
-## Steps
+## Add a method in the controller passing a parameter in the URI
 
-- Implement the controller
-- Create an empty MVC controller to reply to commands (create, delete 
-and update)
-- Create tests to exercise the controller
-- Implement it
+We will use the URI http://<server>/springmvc/properties/<id> where <id> represents
+a property id, and it will return the details of the specified property.
+
+In the controller, we will annotate a method with @RequestMapping and two parameters:
+method, it will be HTTP GET; and value, to give a name to the parameter. The annotation
+@ResponseStatus tells the framework which HTTP status code should return and 
+@ResponseBody indicates that the method's return value should be bound to the 
+web response body.
+
+This method will have a parameter, annotated with @PathVariable. This annotation
+maps methods parameters to parameters in the URI.
+
+	@RequestMapping(method = RequestMethod.GET, value="/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Property getProperty(@PathVariable String id) {
+		return propertyService.findById(id);
+	} 
+
+## Configure MVC controllers
+
+We will use annotations to configure our MVC Controllers. Spring MVC provide a useful
+annotation, @EnableWebMVC, and it does almost all work for us to configure a MVC
+application.
+
+Our configuration class will look like this:
+
+	@Configuration
+	@EnableWebMvc
+	@ComponentScan(basePackages = { "es.rchavarria.springmvc.rest.controllers" })
+	public class MVCConfig {}
+
+We will create an integration test to test whether our configuration works or not.
+Please, see integration test: `MVCConfigIntegrationTest`.
+
+## Initialize web application
+
+Again, we won't use any XML file to configure our application, we will configure
+it programatically.
+
+
 
 # Resources
 

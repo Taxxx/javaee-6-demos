@@ -11,4 +11,9 @@ public class Property {
 		this.address = address;
 		this.price = price;
 	}
+	
+	@Override
+	public String toString() {
+		return "[Property: (city: " + city + "), (address: " + address + "), (price: " + price + ")]";
+	}
 }

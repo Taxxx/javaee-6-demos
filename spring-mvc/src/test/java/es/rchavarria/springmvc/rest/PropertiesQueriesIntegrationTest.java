@@ -1,6 +1,6 @@
 package es.rchavarria.springmvc.rest;
 
-import static org.junit.Assert.fail;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -58,7 +58,7 @@ public class PropertiesQueriesIntegrationTest {
 
         mockMvc.perform(get("/properties")
             .accept(MediaType.APPLICATION_JSON))
-            .andDo(print())
+//            .andDo(print())
             .andExpect(jsonPath("$[0].city").value("first city"))
 	        .andExpect(jsonPath("$[1].address").value("second address"))
 	        .andExpect(jsonPath("$[2].price").value(300));
@@ -66,14 +66,24 @@ public class PropertiesQueriesIntegrationTest {
 
     @Test
     public void testRequestAPropertyUsesHttpOK() throws Exception {
-        when(propertyService.requestAllProperties()).thenReturn(allProperties());
+        when(propertyService.findById(anyString())).thenReturn(allProperties().get(0));
 
-        fail("requesting a single property will return an object with property info: city, address and price");
-
-        mockMvc.perform(get("/properties/{id}", "an arbitrary id")
+        mockMvc.perform(get("/properties/{id}", "an-arbitrary-id")
             .accept(MediaType.APPLICATION_JSON))
-            .andDo(print())
+//            .andDo(print())
             .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testRequestAPropertyRendersAsJSON() throws Exception {
+        when(propertyService.findById(anyString())).thenReturn(allProperties().get(0));
+
+        mockMvc.perform(get("/properties/{id}", "an-arbitrary-id")
+            .accept(MediaType.APPLICATION_JSON))
+//            .andDo(print())
+            .andExpect(jsonPath("$.city").value("first city"))
+	        .andExpect(jsonPath("$.address").value("first address"))
+	        .andExpect(jsonPath("$.price").value(100));
     }
 
 	// fixture method
