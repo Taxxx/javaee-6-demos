@@ -32,4 +32,9 @@ public class InMemoryPropertyService implements PropertyService {
 		return repository.get(id);
 	}
 
+	@Override
+	public void deleteProperty(String string) {
+		throw new RuntimeException("not implemented yet");
+	}
+
 }

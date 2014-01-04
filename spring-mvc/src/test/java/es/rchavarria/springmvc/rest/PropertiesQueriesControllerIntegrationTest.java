@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import es.rchavarria.springmvc.core.services.PropertyService;
 import es.rchavarria.springmvc.rest.domain.Property;
 
-public class PropertiesQueriesIntegrationTest {
+public class PropertiesQueriesControllerIntegrationTest {
   
     private MockMvc mockMvc;
 

@@ -10,4 +10,6 @@ public interface PropertyService {
 
 	Property findById(String id);
 
+	void deleteProperty(String string);
+
 }
