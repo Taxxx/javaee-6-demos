@@ -4,6 +4,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -61,5 +62,19 @@ public class PropertiesCommandsControllerIntegrationTest {
             .andExpect(status().isOk());
         
         verify(propertyService).createProperty(any(Property.class));
+    }
+
+    @Test
+    public void testUpdatePropertyUsesHttpOK() throws Exception {
+    	String json = "{\"city\":\"a new city\",\"address\":\"a new address\",\"price\":54321}";
+    	
+        mockMvc.perform(put("/properties")
+        	.content(json)
+        	.contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk());
+        
+        verify(propertyService).updateProperty(any(Property.class));
     }
 }

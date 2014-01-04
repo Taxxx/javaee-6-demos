@@ -36,4 +36,12 @@ public class PropertiesCommandsController {
 		
 		return new ResponseEntity<Property>(HttpStatus.OK);
 	}
+
+	@RequestMapping(method = RequestMethod.PUT)
+	public ResponseEntity<Property> updateProperty(@RequestBody Property property) {
+		LOGGER.info("updating property: " + property.toString());
+		propertyService.updateProperty(property);
+		
+		return new ResponseEntity<Property>(HttpStatus.OK);
+	}
 }

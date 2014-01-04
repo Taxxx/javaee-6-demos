@@ -14,4 +14,6 @@ public interface PropertyService {
 
 	void createProperty(Property property);
 
+	void updateProperty(Property any);
+
 }
