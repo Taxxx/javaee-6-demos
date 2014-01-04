@@ -6,13 +6,14 @@ of the Spring MVC framework for creating RESTful services.
 It will be a simple web application, without persistence, but a
 complete Spring MVC application where, instead of render responses
 with a JSP page, the response will be in JSON format, to be
-consumed as a Web Service
+consumed as a Web Service.
 
 # Instructions
 
 The application will be a typical CRUD one, and it will manage a 
 list of houses, flats, cottages, ... These kind of properties 
-managed by a real state agency.
+managed by a real state agency. So, our entity, our resource will 
+be a `Property`.
 
 ## Define URI's to access properties
 
@@ -21,7 +22,7 @@ one URI to access it:
 
 http://<server name>/springmvc/properties
 
-We will use different HTTP methods to access properties:
+We will use different HTTP methods to manipulate properties:
 
 - GET /properties: will return a list of properties
 - GET /properties/{id}: will return details of the property identified by
@@ -43,18 +44,25 @@ Annotate the controller so that Spring knows that the class is a
 controller and what URI's and HTTP methods it will handle. The result
 will be something like this:
 
-	// imports...
-		
 	@Controller
 	@RequestMapping("/properties")
 	public class PropertiesQueriesController {
-	
-		@RequestMapping(method = RequestMethod.GET)
-		@ResponseStatus(HttpStatus.OK)
-		@ResponseBody
-		public List<String> getAllProperties() {
-			return Arrays.asList("one", "two", "three");
-		}
+	}
+
+## Create a method to reply a list of properties
+
+Our first method will be one that returns a list of available properties. The
+list will be returned by a service. First, this service will manage properties
+without persistence, but it will be replaced by a more sofisticated one.
+
+The method will map the HTTP method GET and its returned value will be part
+of the response body:
+
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<String> getAllProperties() {
+		return Arrays.asList("one", "two", "three");
 	}
 
 ## Create tests to exercise the query controller
@@ -137,6 +145,9 @@ maps methods parameters to parameters in the URI.
 		return propertyService.findById(id);
 	} 
 
+We will create a test similar to the previous integration test, but I will omit it
+in this post. Take a look at the code in github if you are interested.
+
 ## Configure MVC controllers
 
 We will use annotations to configure our MVC Controllers. Spring MVC provide a useful
@@ -156,7 +167,7 @@ Please, see integration test: `MVCConfigIntegrationTest`.
 ## Initialize web application
 
 Again, we won't use any XML file to configure our application, we will configure
-it programatically.
+it programaticaly.
 
 We will extend a class provided by Spring, `AbstractAnnotationConfigDispatcherServletInitializer`,
 and we have to override some methods:
@@ -177,6 +188,17 @@ with a command:
 	</plugin>
 
 Run with the command: `mvn tomcat7:run`
+
+## Next steps
+
+This post is getting too longer to be published, and we have a lot of work to do, so I will
+implement it in code and I will encourage you to visit the github project and read the 
+code with the following tasks:
+
+- Create a new controller, a command controller. That controller will allow the user to 
+create, update and delete a property.
+- Create three methods in the controller, one for each action (create, update, delete).
+- Remember, each method should be tested with a unit or integration test.
 
 # Resources
 
