@@ -10,7 +10,20 @@ consumed as a Web Service
 
 # Instructions
 
-- 
+The application will be a typical CRUD one, and it will manage a 
+list of houses, flats, cottages, ... These kind of properties 
+managed by a real state agency.
+
+## Steps
+
+- Define URI's to access properties
+- Create an empty MVC controller to reply to queries (list and get)
+- Create tests to exercise the query controller
+- Implement the controller
+- Create an empty MVC controller to reply to commands (create, delete 
+and update)
+- Create tests to exercise the controller
+- Implement it
 
 # Resources
 
