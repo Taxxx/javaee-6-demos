@@ -53,7 +53,7 @@ will be something like this:
 
 Our first method will be one that returns a list of available properties. The
 list will be returned by a service. First, this service will manage properties
-without persistence, but it will be replaced by a more sofisticated one.
+without persistence, but it will be replaced by a more sophisticated one.
 
 The method will map the HTTP method GET and its returned value will be part
 of the response body:
@@ -146,7 +146,9 @@ maps methods parameters to parameters in the URI.
 	} 
 
 We will create a test similar to the previous integration test, but I will omit it
-in this post. Take a look at the code in github if you are interested.
+in this post. Take a look at the code in
+[github project](https://github.com/rchavarria/javaee-6-demos/tree/master/spring-mvc) 
+if you are interested.
 
 ## Configure MVC controllers
 
@@ -192,7 +194,9 @@ Run with the command: `mvn tomcat7:run`
 ## Next steps
 
 This post is getting too longer to be published, and we have a lot of work to do, so I will
-implement it in code and I will encourage you to visit the github project and read the 
+implement it in code and I will encourage you to visit the
+[github project](https://github.com/rchavarria/javaee-6-demos/tree/master/spring-mvc) 
+and read the 
 code with the following tasks:
 
 - Create a new controller, a command controller. That controller will allow the user to 
@@ -202,5 +206,6 @@ create, update and delete a property.
 
 # Resources
 
-http://spring.io/guides/tutorials/rest
+- [Build RESTful services with Spring](http://spring.io/guides/tutorials/rest)
+- [Source code of this demo](https://github.com/rchavarria/javaee-6-demos/tree/master/spring-mvc)
 
