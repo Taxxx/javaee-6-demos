@@ -30,10 +30,24 @@ We will use different HTTP methods to access properties:
 - DELETE /properties/{id]: will delete property identified by {id}
 - PUT /properties/{id]: will update a property
 
+# Create an empty MVC controller to reply to queries (list and get)
+
+The controller that will reply to queries will be named:
+
+	es.rchavarria.springmvc.rest.PropertiesQueriesController
+
+It will reply to HTTP requests querying for data such a list of
+properties or details of a property.
+
+Annotate the controller so that Spring knows that the class is a 
+controller and what URI's and HTTP methods it will handle.
+
+## Create tests to exercise the query controller
+
+
+
 ## Steps
 
-- Create an empty MVC controller to reply to queries (list and get)
-- Create tests to exercise the query controller
 - Implement the controller
 - Create an empty MVC controller to reply to commands (create, delete 
 and update)

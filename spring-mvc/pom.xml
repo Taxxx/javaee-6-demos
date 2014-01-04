@@ -13,6 +13,23 @@
     <url>http://rchavarria.github.io</url>
 
     <dependencies>
+        <!-- spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${version.spring}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${version.spring}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${version.spring}</version>
+        </dependency>
+
         <!-- logs -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -46,6 +63,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
         <!-- dependencies versions -->
+        <version.spring>3.2.5.RELEASE</version.spring>
     </properties>
 
     <build>
