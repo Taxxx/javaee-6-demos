@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
-@RequestMapping("/courses")
+@RequestMapping("/properties")
 public class PropertiesQueriesController {
 
 	@RequestMapping(method = RequestMethod.GET)

@@ -40,7 +40,22 @@ It will reply to HTTP requests querying for data such a list of
 properties or details of a property.
 
 Annotate the controller so that Spring knows that the class is a 
-controller and what URI's and HTTP methods it will handle.
+controller and what URI's and HTTP methods it will handle. The result
+will be something like this:
+
+	// imports...
+		
+	@Controller
+	@RequestMapping("/properties")
+	public class PropertiesQueriesController {
+	
+		@RequestMapping(method = RequestMethod.GET)
+		@ResponseStatus(HttpStatus.OK)
+		@ResponseBody
+		public List<String> getAllProperties() {
+			return Arrays.asList("one", "two", "three");
+		}
+	}
 
 ## Create tests to exercise the query controller
 
