@@ -59,6 +59,14 @@ will be something like this:
 
 ## Create tests to exercise the query controller
 
+The test will be an integration test. It will set up a web server, and
+it will start our controller and it will perform real HTTP requests
+against it.
+
+We will use Mockito to mock external dependencies and a component provided
+by Spring MVC, MockMVC. It will be the server and it will manage requests
+and analyze responses.
+
 
 
 ## Steps
