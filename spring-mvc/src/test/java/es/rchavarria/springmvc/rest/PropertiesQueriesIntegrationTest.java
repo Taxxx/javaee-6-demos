@@ -22,7 +22,7 @@ import es.rchavarria.springmvc.core.services.PropertyService;
 
 public class PropertiesQueriesIntegrationTest {
   
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @InjectMocks
     PropertiesQueriesController controller;
@@ -35,14 +35,15 @@ public class PropertiesQueriesIntegrationTest {
         MockitoAnnotations.initMocks(this);
 
         mockMvc = standaloneSetup(controller)
-        		.setMessageConverters(new MappingJackson2HttpMessageConverter()).build();
+        		.setMessageConverters(new MappingJackson2HttpMessageConverter())
+        		.build();
     }
 
     @Test
     public void testRequestAllCoursesUsesHttpOK() throws Exception {
         when(propertyService.requestAllProperties()).thenReturn(allProperties());
 
-        this.mockMvc.perform(get("/properties")
+        mockMvc.perform(get("/properties")
             .accept(MediaType.APPLICATION_JSON))
             .andDo(print())
             .andExpect(status().isOk());
@@ -52,10 +53,12 @@ public class PropertiesQueriesIntegrationTest {
     public void testRequestAllCoursesRendersOkAsJSON() throws Exception {
 		when(propertyService.requestAllProperties()).thenReturn(allProperties());
 
-        this.mockMvc.perform(get("/properties")
+        mockMvc.perform(get("/properties")
             .accept(MediaType.APPLICATION_JSON))
-            .andDo(print());
-        // TODO add expectations
+            .andDo(print())
+            .andExpect(jsonPath("$[0]").value("one"))
+	        .andExpect(jsonPath("$[1]").value("two"))
+	        .andExpect(jsonPath("$[2]").value("three"));
     }
 
 	// fixture method

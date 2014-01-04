@@ -67,7 +67,51 @@ We will use Mockito to mock external dependencies and a component provided
 by Spring MVC, MockMVC. It will be the server and it will manage requests
 and analyze responses.
 
+The following code shows how to set up a stand alone server that configures
+our controller
 
+	// ...
+
+    private MockMvc mockMvc;
+
+    @InjectMocks
+    PropertiesQueriesController controller;
+
+    @Mock
+    PropertyService propertyService;
+
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+
+        mockMvc = standaloneSetup(controller)
+        		.setMessageConverters(new MappingJackson2HttpMessageConverter())
+        		.build();
+    }
+
+	// ...
+
+And the next code snippet shows how to test a simple HTTP GET request:
+
+    @Test
+    public void testRequestAllCoursesUsesHttpOK() throws Exception {
+        when(propertyService.requestAllProperties()).thenReturn(allProperties());
+
+        mockMvc.perform(get("/properties")
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+    }
+
+We will create another test, just to perform more expectations on the result:
+
+    @Test
+    public void testRequestAllCoursesUsesHttpOK() throws Exception {
+        when(propertyService.requestAllProperties()).thenReturn(allProperties());
+
+        mockMvc.perform(get("/properties")
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$[0]").value("one");
+    }
 
 ## Steps
 
