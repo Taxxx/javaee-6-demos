@@ -37,4 +37,8 @@ public class InMemoryPropertyService implements PropertyService {
 		repository.remove(id);
 	}
 
+	@Override
+	public void createProperty(Property property) {
+		repository.put(property.city, property);
+	}
 }

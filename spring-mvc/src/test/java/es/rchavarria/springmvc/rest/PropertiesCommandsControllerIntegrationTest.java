@@ -43,12 +43,23 @@ public class PropertiesCommandsControllerIntegrationTest {
     }
 
     @Test
-    public void testRequestAllPropertiesUsesHttpOK() throws Exception {
+    public void testDeletePropertyUsesHttpOK() throws Exception {
         mockMvc.perform(delete("/properties/{id}", "id-to-delete")
             .accept(MediaType.APPLICATION_JSON))
             .andDo(print())
             .andExpect(status().isOk());
         
         verify(propertyService).deleteProperty("id-to-delete");
+    }
+
+    @Test
+    public void testCreatePropertyUsesHttpOK() throws Exception {
+        mockMvc.perform(post("/properties")
+        	.content("{\"city\":\"a new city\",\"address\":\"a new address\",\"price\":54321}")
+            .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk());
+        
+        verify(propertyService).createProperty(any(Property.class));
     }
 }

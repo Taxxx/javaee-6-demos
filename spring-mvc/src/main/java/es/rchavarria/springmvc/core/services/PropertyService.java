@@ -12,4 +12,6 @@ public interface PropertyService {
 
 	void deleteProperty(String string);
 
+	void createProperty(Property any);
+
 }
