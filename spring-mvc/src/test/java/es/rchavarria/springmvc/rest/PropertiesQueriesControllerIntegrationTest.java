@@ -89,9 +89,9 @@ public class PropertiesQueriesControllerIntegrationTest {
 	// fixture method
     private List<Property> allProperties() {
 		return Arrays.asList(
-				new Property("first city", "first address", 100),
-				new Property("second city", "second address", 200),
-				new Property("third city", "third address", 300)
+				Property.fromAttributes("first city", "first address", 100),
+				Property.fromAttributes("second city", "second address", 200),
+				Property.fromAttributes("third city", "third address", 300)
 				);
 	}
 }

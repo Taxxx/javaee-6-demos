@@ -25,9 +25,9 @@ public class InMemoryPropertyServiceTest {
 	public void testGetFirst() {
 		Property property = service.findById("1");
 
-		assertEquals("city 1", property.city);
-		assertEquals("address 1", property.address);
-		assertEquals(1, property.price);
+		assertEquals("city 1", property.getCity());
+		assertEquals("address 1", property.getAddress());
+		assertEquals(1, property.getPrice());
 	}
 	
 	@Test

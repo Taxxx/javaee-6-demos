@@ -2,19 +2,12 @@ package es.rchavarria.springmvc.rest.domain;
 
 public class Property {
 
-	public String city;
-	public String address;
-	public int price;
+	private String city;
+	private String address;
+	private int price;
 	
-	public Property() {
-	}
+	public Property() {}
 
-	public Property(String city, String address, int price) {
-		this.city = city;
-		this.address = address;
-		this.price = price;
-	}
-	
 	@Override
 	public String toString() {
 		return "[Property: (city: " + city + "), (address: " + address + "), (price: " + price + ")]";
@@ -42,5 +35,15 @@ public class Property {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	
+	public static Property fromAttributes(String city, String address, int price) {
+		Property property = new Property();
+		
+		property.city = city;
+		property.address = address;
+		property.price = price;
+		
+		return property;
 	}
 }

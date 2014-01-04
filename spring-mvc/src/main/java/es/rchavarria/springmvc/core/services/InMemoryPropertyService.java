@@ -17,9 +17,9 @@ public class InMemoryPropertyService implements PropertyService {
 	public InMemoryPropertyService() {
 		repository = new HashMap<String, Property>();
 
-		repository.put("1", new Property("city 1", "address 1", 1));
-		repository.put("2", new Property("city 2", "address 2", 2));
-		repository.put("3", new Property("city 3", "address 3", 3));
+		repository.put("1", Property.fromAttributes("city 1", "address 1", 1));
+		repository.put("2", Property.fromAttributes("city 2", "address 2", 2));
+		repository.put("3", Property.fromAttributes("city 3", "address 3", 3));
 	}
 	
 	@Override
@@ -39,6 +39,6 @@ public class InMemoryPropertyService implements PropertyService {
 
 	@Override
 	public void createProperty(Property property) {
-		repository.put(property.city, property);
+		repository.put(property.getCity(), property);
 	}
 }
