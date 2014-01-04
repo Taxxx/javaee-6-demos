@@ -16,3 +16,5 @@ and development lifecycle (from start to test, run and package as .war files)
 - [Developing a web service client](ws-jaxws-client)
 - [Understanding JPA entity lifecycle](jpa-entities)
 - [Basics of JSF](jsf-basics): using Apache MyFaces as JSF implementation
+- [RESTful services with Spring MVC](spring-mvc): use Spring MVC to implement a RESTful service
+
